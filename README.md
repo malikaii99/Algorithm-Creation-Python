@@ -1,1 +1,81 @@
-# Algorithm-Creation-Python
+# Algorithm Creation using Python
+<h1>Description</h1>
+
+An important part of cybersecurity is controlling access to restricted content. In this lab, I'll work with a text file containing IP addresses that are allowed to access specific restricted content at your organization.Parsing a file allows security analysts to read and update the contents. Python helps analysts develop algorithms to automate the process of parsing files and keeping them up-to-date. I'll develop an algorithm that parses this text file of IP addresses and updates the file by removing that addresses that no longer have access to the restricted content.
+
+<h2>Scenario</h2>
+
+Review the scenario below.
+
+In this lab, your role assumes that of a diligent security analyst, tasked with a critical responsibility. Your mission is to design and implement an algorithm that proficiently parses a file containing a list of authorized IP addresses granted access to restricted content. This is a pivotal part of maintaining the security infrastructure, as it ensures that only the right individuals or entities can access sensitive and restricted data or resources.
+
+The significance of your task cannot be overstated. As the custodian of this IP address list, your algorithm must effectively sift through the data, identifying and isolating the IP addresses that no longer have the privilege to access restricted content. This process of removal is pivotal in maintaining the integrity of the security system, preventing any potential vulnerabilities that might arise from outdated or unauthorized IP entries.
+
+Your algorithm serves as a gatekeeper, safeguarding the digital fortress of the organization or system you're protecting. It plays a crucial role in upholding the confidentiality, integrity, and availability of the restricted content, ensuring that only those with legitimate access rights are permitted. This task reflects the broader responsibility of a security analyst, who not only safeguards the present but also maintains a proactive stance in fortifying the organization's security posture against evolving threats.
+
+In essence, this lab represents a pivotal step in the journey of a security analyst, where your skills and expertise are harnessed to enhance the overall security infrastructure, contributing to a robust and resilient defense against potential threats.
+
+
+<h2>Work load</h2>
+
+- <a> Full PDF </a>
+  - [PDF includes screenshot](https://github.com/malikaii99/File-Management-Permission-Using-Linux/blob/973655cae8cd1c3bbbb9d6bbfcc7d231cee3142f/File%20permissions%20in%20Linux%20.pdf)
+    
+To accomplish this objective, I undertook the following actions:
+
+
+<h3>Check file and directory details</h3>
+
+The following code demonstrates how I used Linux commands to determine the existing permissions set for a specific directory in the file system.
+
+
+The first line of the screenshot displays the command I entered, and the other lines display the output. The code lists all contents of the projects directory. I used the ls command with the -la option to display a detailed listing of the file contents that also returned hidden files. The output of my command indicates that there is one directory named drafts, one hidden file named .project_x.txt, and five other project files. The 10-character string in the first column represents the permissions set on each file or directory.
+
+
+<h3>Describe the permissions string</h3>
+
+The 10-character string can be deconstructed to determine who is authorized to access the file and their specific permissions. The characters and what they represent are as follows:
+1st character: This character is either a d or hyphen (-) and indicates the file type. If it’s a d, it’s a directory. If it’s a hyphen (-), it’s a regular file.
+2nd-4th characters: These characters indicate the read (r), write (w), and execute (x) permissions for the user. When one of these characters is a hyphen (-) instead, it indicates that this permission is not granted to the user.
+5th-7th characters: These characters indicate the read (r), write (w), and execute (x) permissions for the group. When one of these characters is a hyphen (-) instead, it indicates that this permission is not granted for the group.
+8th-10th characters: These characters indicate the read (r), write (w), and execute (x) permissions for other. This owner type consists of all other users on the system apart from the user and the group. When one of these characters is a hyphen (-) instead, that indicates that this permission is not granted for other.
+
+For example, the file permissions for project_t.txt are -rw-rw-r--. Since the first character is a hyphen (-), this indicates that project_t.txt is a file, not a directory. The second, fifth, and eighth characters are all r, which indicates that user, group, and other all have read permissions. The third and sixth characters are w, which indicates that only the user and group have write permissions. No one has execute permissions for 
+
+
+<h3>Change file permission </h3>
+
+The organization determined that other shouldn't have write access to any of their files. To comply with this, I referred to the file permissions that I previously returned. I determined project_k.txt must have the write access removed for other.
+
+The following code demonstrates how I used Linux commands to do this:
+
+
+
+The first two lines of the screenshot display the commands I entered, and the other lines display the output of the second command. The chmod command changes the permissions on files and directories. The first argument indicates what permissions should be changed, and the second argument specifies the file or directory. In this example, I removed write permissions from other for the project_k.txt file. After this, I used ls -la to review the updates I made.
+
+
+<h3>Change file permissions on a hidden file</h3>
+
+The research team at my organization recently archived project_x.txt. They do not want anyone to have write access to this project, but the user and group should have read access. 
+
+The following code demonstrates how I used Linux commands to change the permissions:
+
+
+
+The first two lines of the screenshot display the commands I entered, and the other lines display the output of the second command. I know .project_x.txt is a hidden file because it starts with a period (.). In this example, I removed write permissions from the user and group, and added read permissions to the group. I removed write permissions from the user with u-w. Then, I removed write permissions from the group with g-w, and added read permissions to the group with g+r. 
+
+
+<h3>Change directory permissions</h3>
+
+My organization only wants the researcher2 user to have access to the drafts directory and its contents. This means that no one other than researcher2 should have execute permissions.
+
+The following code demonstrates how I used Linux commands to change the permissions:
+
+
+
+The first two lines of the screenshot display the commands I entered, and the other lines display the output of the second command. I previously determined that the group had execute permissions, so I used the chmod command to remove them. The researcher2 user already had execute permissions, so they did not need to be added.
+
+
+<h3>Summary</h3>
+
+I adjusted several permissions to align with the authorization requirements set by my organization for the files and directories within the projects directory. To initiate this process, I began by employing the ls -la command to inspect the current permissions of the directory. This initial assessment informed my subsequent actions. Subsequently, I utilized the chmod command on multiple occasions to modify the permissions of both files and directories as needed.
